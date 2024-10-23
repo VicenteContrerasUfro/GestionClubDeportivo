@@ -1,5 +1,7 @@
 package GestionClub;
 
+import java.util.List;
+
 public class Partido {
 	private List<Equipo> _equipos;
 	private Cancha _canchaAsignada;

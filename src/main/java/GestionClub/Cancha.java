@@ -1,13 +1,20 @@
 package GestionClub;
 
-import java.util.Vector;
-import GestionClub.Partido;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cancha {
 	private String _superficie;
 	private String _ubicacionClub;
 	private int _capacidadEspectadores;
-	public Vector<Partido> _unnamed_Partido_ = new Vector<Partido>();
+	private List<Partido> partidosReservados; // Lista para almacenar partidos reservados
+
+	public Cancha(String superficie, String ubicacionClub, int capacidadEspectadores) {
+		this._superficie = superficie;
+		this._ubicacionClub = ubicacionClub;
+		this._capacidadEspectadores = capacidadEspectadores;
+		this.partidosReservados = new ArrayList<>();
+	}
 
 	public String getSuperficie() {
 		return this._superficie;
@@ -34,10 +41,19 @@ public class Cancha {
 	}
 
 	public void reservarCancha(Partido aPartido) {
-		throw new UnsupportedOperationException();
+		if (verificarDisponibilidad(aPartido)) {
+			partidosReservados.add(aPartido); // Agregar el partido a la lista si está disponible
+		} else {
+			throw new IllegalArgumentException("La cancha ya está reservada para este partido.");
+		}
 	}
 
-	public boolean verificarDisponibilidad() {
-		throw new UnsupportedOperationException();
+	// Verifica si hay disponibilidad para un partido
+	public boolean verificarDisponibilidad(Partido aPartido) {
+		return !partidosReservados.contains(aPartido); // Retorna true si no está reservado
+	}
+
+	public List<Partido> getPartidos() {
+		return partidosReservados; // Devuelve la lista de partidos reservados
 	}
 }

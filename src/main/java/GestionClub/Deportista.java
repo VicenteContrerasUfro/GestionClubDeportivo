@@ -1,13 +1,22 @@
 package GestionClub;
 
+import java.util.List;
+
 public class Deportista {
 	private String _idDeportista;
 	private String _nombre;
 	private String _apellido;
 	private String _contacto;
-	private Deporte _deporte;
-	public ActividadDeportiva _unnamed_ActividadDeportiva_;
-	public Equipo _unnamed_Equipo_;
+	private ActividadDeportiva _actividadDeportiva; // Asumimos que cada deportista está en una actividad deportiva
+	private Equipo _equipo; // Asignamos el equipo correspondiente al deportista
+
+	public Deportista(String idDeportista, String nombre, String apellido, String contacto, ActividadDeportiva deporte) {
+		this._idDeportista = String.valueOf(idDeportista);
+		this._nombre = nombre;
+		this._apellido = apellido;
+		this._contacto = contacto;
+		this._actividadDeportiva = new ActividadDeportiva(deporte, null); // Ajusta según tu diseño
+	}
 
 	public String getIdDeportista() {
 		return this._idDeportista;
@@ -41,7 +50,19 @@ public class Deportista {
 		this._contacto = aContacto;
 	}
 
-	public void registarDeportista(List<Deportista> aDeportistas) {
-		throw new UnsupportedOperationException();
+	// Método para registrar deportista (puedes implementarlo)
+	public void registrarDeportista(List<Deportista> aDeportistas) {
+		// Implementación de registro
+	}
+
+	// Getter y Setter para Equipo
+	public Equipo getEquipo() {
+		return _equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this._equipo = equipo;
 	}
 }
+
+
